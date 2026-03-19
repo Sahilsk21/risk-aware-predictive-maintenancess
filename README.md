@@ -6,21 +6,35 @@ Unlike standard ML approaches that rely on naive point estimates, this project u
 
 ---
 
-## 📂 Repository Structure
+## 📂 Repository Structure (Exact)
 
 ```text
-├── data/                   # Raw CMAPSS text files and exported model artifacts
-├── src/                    # Modular Python pipeline
+risk-aware-predictive-maintenance/
+├── data/
+│   └── archive/
+│       └── CMaps/                  # All raw .txt files (train_FD001, test_FD001, RUL_FD001, FD002)
+├── notebooks/
+│   ├── 01_eda.ipynb                # Task A + B
+│   ├── 02_features_and_modeling.ipynb  # Task C + D + E + SHAP
+│   └── 03_policy_simulation.ipynb  # Task F + dynamic simulation
+├── src/
 │   ├── __init__.py
-│   ├── load_data.py        # Data ingestion and target definition
-│   ├── features.py         # Rolling windows, signal alignment, feature factory
-│   ├── uncertainty.py      # Conformal prediction calibration (CQR)
-│   ├── evaluation.py       # Custom NASA scoring and Winkler metrics
-│   ├── train.py            # Master training and evaluation script
-│   ├── predict.py          # Production inference script for new telemetry
-│   └── policy.py           # Dynamic cycle-by-cycle business simulation
-├── notebooks/              # Original EDA and research notebooks
-└── README.md               # Executive summary and setup instructions
+│   ├── load_data.py
+│   ├── features.py
+│   ├── train.py                    # Full training + CQR calibration
+│   ├── uncertainty.py
+│   ├── evaluation.py
+│   ├── policy.py                   # Dynamic simulation engine
+│   ├── predict.py                  # Real-time inference
+│   └── evaluation.py
+├── reports/
+│   ├
+│   ├── Risk_Aware_Predictive_Maintenance_Report.pdf   # 5-page executive report
+│   └── System_Design_Proposal.md   # Task  production architecture
+├── venv/                           # Virtual environment 
+├── .gitignore
+├── requirements.txt
+└── README.md                       # ← This file
 ```
 
 ---
