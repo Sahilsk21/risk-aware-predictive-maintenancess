@@ -2,7 +2,7 @@
 
 ## Design Proposal
 
-This production system transforms the offline model (Tasks D–F) into a scalable, low-latency, monitored, and continuously improving real-time service for a fleet operator. It handles streaming sensor data from hundreds/thousands of engines, computes features online, delivers uncertainty-calibrated RUL every cycle, and issues maintenance recommendations under capacity constraints (K slots/day).
+This production system transforms the offline model  into a scalable, low-latency, monitored, and continuously improving real-time service for a fleet operator. It handles streaming sensor data from hundreds/thousands of engines, computes features online, delivers uncertainty-calibrated RUL every cycle, and issues maintenance recommendations under capacity constraints (K slots/day).
 
 ---
 
@@ -70,20 +70,4 @@ This production system transforms the offline model (Tasks D–F) into a scalabl
 
 ---
 
-## Architecture Diagram
-
-```mermaid
-graph TD
-    A[Engine Sensors MQTT OPC-UA] --> B[Kafka Topics per engine]
-    B --> C[Flink Streaming Online Rolling HI]
-    C --> D[Redis Feature Store Delta Lake]
-    D --> E[Inference Service XGBoost CQR Kubernetes CPU]
-    E --> F[Daily Scheduler Risk Score Greedy K=3]
-    F --> G[Maintenance Dashboard Alerts]
-
-    H[Prometheus Grafana] --> I[Drift Detection Evidently AI]
-    I --> J[Alerts Slack Email]
-    J --> K[MLflow Retraining Weekly Drift Trigger]
-    K --> E
-    L[Shadow AB Testing] --> K
-```
+![Architecture Diagram](/home/user/risk-aware-predictive-maintenancess/reports/mermaid-diagram.svg)
