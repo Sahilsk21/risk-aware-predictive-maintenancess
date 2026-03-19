@@ -45,20 +45,23 @@ risk-aware-predictive-maintenance/
 This project requires the **NASA CMAPSS Jet Engine Simulator Data** (specifically `FD001`).
 1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/beirnangu/nasa-cmaps) or the NASA Prognostics Data Repository.
 2. Extract the files and place `train_FD001.txt`, `test_FD001.txt`, and `RUL_FD001.txt` into a `data/archive/CMaps/` directory (or update the path arguments below).
-
-### 2. Run Training & Evaluation
+### 2. Install Dependencies
+``` bash 
+pip install -r requirements.txt
+```
+### 3. Run Training & Evaluation
 The training pipeline handles data loading, feature engineering, model training (XGBoost Quantile Regression), and Conformal Calibration. It automatically saves the required models and data artifacts to your data folder.
 ```bash
 python -m src.train --data_dir /path/to/your/data/
 ```
 
-### 3. Run the Maintenance Simulation
+### 4. Run the Maintenance Simulation
 Once the models are trained and predictions are saved, run the business simulation to evaluate the financial impact of the models under constrained hangar capacity ($K=3$ engines/day).
 ```bash
 python -m src.policy --capacity 3
 ```
 
-### 4. Run Live Inference (Production Simulation)
+### 5. Run Live Inference (Production Simulation)
 To simulate processing a batch of brand new telemetry data through the pre-trained pipeline:
 ```bash
 python -m src.predict --input /path/to/test_FD001.txt --model_dir /path/to/models/
