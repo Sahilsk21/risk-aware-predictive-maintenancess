@@ -70,4 +70,20 @@ This production system transforms the offline model  into a scalable, low-latenc
 
 ---
 
-![Architecture Diagram](/home/user/risk-aware-predictive-maintenancess/reports/mermaid-diagram.svg)
+## Architecture Diagram
+
+```mermaid
+graph TD
+    A[Engine Sensors MQTT OPC-UA] --> B[Kafka Topics per engine]
+    B --> C[Flink Streaming Online Rolling HI]
+    C --> D[Redis Feature Store Delta Lake]
+    D --> E[Inference Service XGBoost CQR Kubernetes CPU]
+    E --> F[Daily Scheduler Risk Score Greedy K=3]
+    F --> G[Maintenance Dashboard Alerts]
+
+    H[Prometheus Grafana] --> I[Drift Detection Evidently AI]
+    I --> J[Alerts Slack Email]
+    J --> K[MLflow Retraining Weekly Drift Trigger]
+    K --> E
+    L[Shadow AB Testing] --> K
+```
