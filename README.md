@@ -13,17 +13,17 @@ risk-aware-predictive-maintenance/
 ├── data/
 │   └── archive/
 │       └── CMaps/                  # All raw .txt files (train_FD001, test_FD001, RUL_FD001, FD002)
-├── notebooks/
-│   ├── 01_eda.ipynb                # Task A + B
-│   ├── 02_features_and_modeling.ipynb  # Task C + D + E + SHAP
-│   └── 03_policy_simulation.ipynb  # Task F + dynamic simulation
+├── notebooks/                      # Original EDA and research notebooks
+│   ├── 01_eda.ipynb                # Exploratory Analysis, Degradation Understanding & Target Definition
+│   ├── 02_features_and_modeling.ipynb  # Feature Engineering, RUL Modeling & Uncertainty Estimation + SHAP
+│   └── 03_policy_simulation.ipynb  # Maintenance Scheduling Policy + dynamic simulation
 ├── src/
 │   ├── __init__.py
-│   ├── load_data.py
-│   ├── features.py
+│   ├── load_data.py                # Data ingestion and target definition
+│   ├── features.py                 # Rolling windows, signal alignment, feature factory
 │   ├── train.py                    # Full training + CQR calibration
-│   ├── uncertainty.py
-│   ├── evaluation.py
+│   ├── uncertainty.py              # Conformal prediction calibration (CQR)
+│   ├── evaluation.py               # Custom NASA scoring and Winkler metrics
 │   ├── policy.py                   # Dynamic simulation engine
 │   ├── predict.py                  # Real-time inference
 │   └── evaluation.py
@@ -31,7 +31,7 @@ risk-aware-predictive-maintenance/
 │   ├
 │   ├── Risk_Aware_Predictive_Maintenance_Report.pdf   # 5-page executive report
 │   └── System_Design_Proposal.md   # Task  production architecture
-├── venv/                           # Virtual environment 
+├                           
 ├── .gitignore
 ├── requirements.txt
 └── README.md                       # ← This file
